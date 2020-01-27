@@ -1,0 +1,21 @@
+@charset "utf-8";
+
+
+$beige-lighter: #EFF0EB;
+
+//Navbar
+$navbar-background-color: #002538;
+$navbar-item-color: #ffffff;
+
+//Body
+$body-background-color: $beige-lighter;
+
+
+  //Import only what you need from Bulma
+@import "../node_modules/bulma/sass/utilities/_all.sass";
+@import "../node_modules/bulma/sass/base/_all.sass";
+@import "../node_modules/bulma/sass/components/_all.sass";
+@import "../node_modules/bulma/sass/elements/_all.sass";
+@import "../node_modules/bulma/sass/form/_all.sass";
+@import "../node_modules/bulma/sass/grid/_all.sass";
+@import "../node_modules/bulma/sass/layout/_all.sass";
