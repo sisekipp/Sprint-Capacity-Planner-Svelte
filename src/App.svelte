@@ -4,6 +4,12 @@
 
     import './style.scss';
 
+    import  Icon  from 'fa-svelte'
+    import { faEllipsisV, faPlus } from '@fortawesome/free-solid-svg-icons'
+
+    let dotIcon = faEllipsisV;
+    let plusIcon = faPlus;
+
     let data = {
         startDate: format(new Date(), 'yyyy-MM-dd'),
         endDate: format(addWeeks(new Date(), 1), 'yyyy-MM-dd'),
@@ -32,76 +38,86 @@
 
 </script>
 
-<nav class="navbar" role="navigation" aria-label="main navigation">
+<nav class="navbar navbar-dark" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
         <span class="navbar-item">Sprint Capacity Planner</span>
     </div>
 </nav>
 
 <main>
-    <section class="section">
-        <div class="container is-fluid">
-            <form>
-                <div class="field">
-                    <label class="label">Start</label>
-                    <div class="control">
-                        <input class="input" type="date" bind:value={data.startDate}>
-                    </div>
-                </div>
-                <div class="field">
-                    <label class="label">End</label>
-                    <div class="control">
-                        <input class="input" type="date" bind:value={data.endDate}>
-                    </div>
-                </div>
-                <div class="field">
-                    <label class="label">Working hours</label>
-                    <div class="control">
-                        <input class="input" type="number" bind:value={data.workingHours}>
-                    </div>
-                </div>
-                <div class="field">
-                    <label class="label">Workweek</label>
-                    <div class="control">
-                        <input class="input" type="number" bind:value={data.workWeek}>
-                    </div>
-                </div>
-                <div class="field">
-                    <label class="label">Capacity for tasks</label>
-                    <div class="control">
-                        <input class="input" type="number" bind:value={data.capacityForTask}>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </section>
+    <div class="container-fluid">
+        <section>
+            <div class="row">
+                <div class="col-sm-2">
 
-    <section class="section">
-        <div class="container is-fluid">
-            <table class="table is-fullwidth">
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Days of</th>
-                    <th>Working time</th>
-                </tr>
-                </thead>
-                <tbody>
-                {#each data.teamMember as member}
+                    <form>
+                        <div class="form-group">
+                            <label for="startDate">Start</label>
+                            <input id="startDate" class="form-control" type="date" bind:value={data.startDate}>
+                        </div>
+                        <div class="form-group">
+                            <label for="">End</label>
+                            <input id="endDate" class="form-control" type="date" bind:value={data.endDate}>
+                        </div>
+                        <div class="form-group">
+                            <label for="workingHours">Working hours</label>
+                            <input id="workingHours" class="form-control" type="number" bind:value={data.workingHours}>
+                        </div>
+                        <div class="form-group">
+                            <label for="workWeek">Workweek</label>
+                            <input id="workWeek" class="form-control" type="number" bind:value={data.workWeek}>
+                        </div>
+                        <div class="form-group">
+                            <label for="capacityForTasks">Capacity for tasks</label>
+                            <input id="capacityForTasks" class="form-control" type="number" bind:value={data.capacityForTask}>
+                            <small class="form-text text-muted">In percent</small>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="table-buttons">
+                <button type="button" class="btn btn-secondary btn-sm align-middle"><Icon icon="{plusIcon}"/>Add Team Member</button>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead class="thead-dark">
                     <tr>
-                        <td>{member.name}</td>
-                        <td>{member.daysOf}</td>
-                        <td>{member.workingTimeInPercent}%</td>
+                        <th></th>
+                        <th>Name</th>
+                        <th>Days of</th>
+                        <th>Working time</th>
                     </tr>
-                {/each}
-                </tbody>
-            </table>
-        </div>
-    </section>
+                    </thead>
+                    <tbody>
+                    {#each data.teamMember as member}
+                        <tr class="table-light">
+                            <td>
+                                <div class="align-middle btn-group dropright">
+                                    <button type="button" class="btn btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <Icon icon="{dotIcon}"/>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">Edit</a>
+                                        <a class="dropdown-item" href="#">Delete</a>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="align-middle">{member.name}</td>
+                            <td class="align-middle">{member.daysOf}</td>
+                            <td class="align-middle">{member.workingTimeInPercent}%</td>
+                        </tr>
+                    {/each}
+                    </tbody>
+                </table>
+                <p class="text-right">Sprint duration: {data.sprintLength} weeks / Capacity: 0 hours</p>
+            </div>
+        </section>
+    </div>
 
 
 </main>
-
-<style>
-
-</style>

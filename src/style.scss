@@ -1,21 +1,24 @@
 @charset "utf-8";
+@import "~bootstrap/dist/css/bootstrap.min.css";
 
-
+// Variables
 $beige-lighter: #EFF0EB;
 
-//Navbar
-$navbar-background-color: #002538;
-$navbar-item-color: #ffffff;
+body {
+  background-color: $beige-lighter;
 
-//Body
-$body-background-color: $beige-lighter;
+}
+
+section {
+  margin-bottom: 30px;
+}
+
+.navbar {
+  background-color: #002538;
+  margin-bottom: 30px;
+}
 
 
-  //Import only what you need from Bulma
-@import "../node_modules/bulma/sass/utilities/_all.sass";
-@import "../node_modules/bulma/sass/base/_all.sass";
-@import "../node_modules/bulma/sass/components/_all.sass";
-@import "../node_modules/bulma/sass/elements/_all.sass";
-@import "../node_modules/bulma/sass/form/_all.sass";
-@import "../node_modules/bulma/sass/grid/_all.sass";
-@import "../node_modules/bulma/sass/layout/_all.sass";
+.table-buttons {
+  margin-bottom: 10px;
+}
